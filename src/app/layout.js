@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/Sidebar";
-import { News } from "@/components/News";
+import Sidebar from "@/components/Sidebar";
+import News from "@/components/News";
 import SessionWrapper from "@/components/SessionWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
             <div className="hidden sm:inline border-r h-screen">
               <Sidebar/>
             </div>
-            <div>{children}</div>
+            <div className="w-2xl flex-1">{children}</div>
               <div className="lg:flex-col p-3 h-screen border-l hidden lg:flex w-[24rem]">
                 <div className="sticky top-0 bg-white py-2">
                   <input

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export const News = () => {
+export default function News() {
   const [news, setNews]=useState([]);
   const [articleNum, setArticleNum]=useState(3);
   useEffect(()=>{

@@ -5,7 +5,7 @@ import { HiHome, HiDotsHorizontal } from "react-icons/hi";
 import Link from 'next/link';
 import { useSession, signOut, signIn } from 'next-auth/react';
 
-export const Sidebar = () => {
+export default function Sidebar() {
   const { data: session } = useSession();
   console.log(session);
   return (
