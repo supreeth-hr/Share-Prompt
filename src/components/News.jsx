@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import Image from 'next/image';
 
 export const News = () => {
   const [news, setNews]=useState([]);
@@ -38,7 +37,7 @@ export const News = () => {
         ))}
         <button
         onClick={()=>setArticleNum(articleNum+3)}
-        className="text-blue-300 pl-4 pb-3 hover:text-blue-400 text-sim">
+        className="text-blue-500 pl-4 pb-3 hover:text-blue-400 text-sim">
           Load more
         </button>
     </div>
