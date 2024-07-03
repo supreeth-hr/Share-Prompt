@@ -12,15 +12,15 @@ export default function Post({post, id}) {
         />
         <div className='flex-1'>
             <div className='flex items-center justify-between'>
-                <div className='flex items-center space-x-1 whitespace-nowrap'>
+                <div className='flex flex-col items-start space-x-1 whitespace-nowrap'>
                     <h4 className='font-bold text-sx truncate'>
                         {post?.name}
                     </h4>
-                    <span className='text-xs truncate'>
+                    <div className='text-xs'>
                         @{post?.username}
-                    </span>
+                    </div>
                 </div>
-                <HiDotsHorizontal className='texxt-sm'/>
+                <HiDotsHorizontal className='text-sm'/>
             </div>
 
             <Link href={`/post/${id}`}>
@@ -32,7 +32,7 @@ export default function Post({post, id}) {
             <img src={post?.image}
             className='rounded-2xl mr-2'/>
             </Link>
-            <Icons/>
+            <Icons id={id}/>
         </div>
     </div> 
   );
