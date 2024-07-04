@@ -16,7 +16,7 @@ import { signIn, useSession } from 'next-auth/react';
 
 export default function Comment({ comment, commentId, originalPostId }) {
   const [isLiked, setIsLiked] = useState(false);
-  const [likes, setLikes] = useState([]); // [1
+  const [likes, setLikes] = useState([]);
   const { data: session } = useSession();
   const db = getFirestore(app);
 
@@ -80,9 +80,11 @@ export default function Comment({ comment, commentId, originalPostId }) {
       />
       <div className='flex-1'>
         <div className='flex items-center justify-between'>
-          <div className='flex items-center space-x-1 whitespace-nowrap'>
+          <div className='flex flex-col items-start space-x-1 whitespace-nowrap'>
             <h4 className='font-bold text-sm truncate'>{comment?.name}</h4>
-            <span className='text-xs truncate'>@{comment?.username}</span>
+            <div className='text-xs'>
+                @{comment?.username}
+            </div>
           </div>
           <HiDotsHorizontal className='text-sm' />
         </div>
