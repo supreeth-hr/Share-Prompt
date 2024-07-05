@@ -24,6 +24,7 @@ export default function Input() {
   const [selectedFile, setSelectedFile]=useState(null);
   const [imageFileUploading, setImageFileUploading]=useState(false);
   const [text, setText] = useState('');
+  const [topic, setTopic] = useState('');
   const [postLoading, setPostLoading]=useState(false);
   const imagePickRef=useRef(null);
   const db=getFirestore(app);
@@ -76,12 +77,14 @@ export default function Input() {
       name:session.user.name,
       username:session.user.username,
       text,
+      topic,
       profileImg:session.user.image,
       timestamp:serverTimestamp(),
       image:imageFileUrl,
     });
     setPostLoading(false);
     setText('');
+    setTopic('');
     setImageFileUrl(null);
     setSelectedFile(null);
     location.reload();
@@ -95,12 +98,28 @@ export default function Input() {
         alt='user-img'
         className='h-11 w-11 rounded-full cursor-pointer hover:brightness-95'/>
         <div className='w-full divide-y divide-gray-200'>
+          <div className='flex flex-col mb-3'>
+            <label className='text-gray-700 font-semibold' htmlFor='topic'>What&apos;s the Prompt about?</label>
             <textarea
-            className='w-full border-none outline-none tracking-wide min-h-[50px] text-gray-700'
-            placeholder='Share your prompt'
-            rows='2'
-            value={text}
-            onChange={(e)=>setText(e.target.value)}></textarea>
+              id='topic'
+              className='w-full border-2 rounded outline-none tracking-wide min-h-[30px] text-gray-700 mt-1'
+              placeholder='Type here'
+              rows='2'
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+            />
+          </div>
+          <div className='flex flex-col mb-3 pt-2'>
+            <label className='text-gray-700 font-semibold' htmlFor='prompt'>Share your AI prompt</label>
+            <textarea
+              id='prompt'
+              className='w-full border-2 rounded outline-none tracking-wide min-h-[50px] text-gray-700 mt-1'
+              placeholder='Type here'
+              rows='3'
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+          </div>
             {selectedFile && (
               <img
               src={imageFileUrl}
@@ -120,7 +139,7 @@ export default function Input() {
                 hidden
                 />
                 <button
-                disabled={text.trim()===''|| postLoading || imageFileUploading}
+                disabled={topic.trim() === '' || text.trim() === '' || postLoading || imageFileUploading}
                 className='bg-blue-400 text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:brightness-95 disabled:opacity-50'
                 onClick={handleSubmit}>
                 Post

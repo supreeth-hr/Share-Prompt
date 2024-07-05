@@ -1,6 +1,6 @@
 'use client';
 
-import { HiDotsHorizontal, HiHeart, HiOutlineHeart } from 'react-icons/hi';
+import { HiOutlineTrash, HiHeart, HiOutlineHeart } from 'react-icons/hi';
 import { useState, useEffect } from 'react';
 import {
   getFirestore,
@@ -14,7 +14,7 @@ import {
 import { app } from '../firebase';
 import { signIn, useSession } from 'next-auth/react';
 
-export default function Comment({ comment, commentId, originalPostId }) {
+export default function Comment({ comment, commentId, originalPostId, uid}) {
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState([]);
   const { data: session } = useSession();
@@ -56,6 +56,10 @@ export default function Comment({ comment, commentId, originalPostId }) {
     }
   };
 
+  const deleteComment = async () => {
+    await deleteDoc(doc(db, 'posts', originalPostId, 'comments', commentId));
+  };
+
   useEffect(() => {
     onSnapshot(
       collection(db, 'posts', originalPostId, 'comments', commentId, 'likes'),
@@ -86,10 +90,10 @@ export default function Comment({ comment, commentId, originalPostId }) {
                 @{comment?.username}
             </div>
           </div>
-          <HiDotsHorizontal className='text-sm' />
         </div>
 
-        <p className='text-gray-800 text-xs my-3'>{comment?.comment}</p>
+        <p className='text-gray-800 text-xs my-3 text-justify whitespace-normal break-words'>{comment?.comment}</p>
+        <div className='flex justify-start gap-5 p-2 text-gray-500'>
         <div className='flex items-center'>
           {isLiked ? (
             <HiHeart
@@ -106,6 +110,12 @@ export default function Comment({ comment, commentId, originalPostId }) {
             <span className={`text-xs ${isLiked && 'text-red-600'}`}>
               {likes.length}
             </span>
+          )}
+          </div>
+          {session?.user?.uid === uid &&(
+            <HiOutlineTrash 
+            onClick={deleteComment}
+            className='h-8 w-8 cursor-pointer rounded-full transition duration-500 ease-in-out p-2 hover:text-sky-500 hover: bg-sky-100'/>
           )}
         </div>
       </div>

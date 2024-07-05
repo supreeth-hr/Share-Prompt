@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { HiDotsHorizontal } from 'react-icons/hi';
 import Icons from './Icons';
 
 export default function Post({post, id}) {
@@ -20,17 +19,23 @@ export default function Post({post, id}) {
                         @{post?.username}
                     </div>
                 </div>
-                <HiDotsHorizontal className='text-sm'/>
             </div>
 
-            <Link href={`/post/${id}`}>
-            <p className='text-gray-800 text-sm my-3'>
-                {post?.text}
-            </p>
+            <Link href={`/posts/${id}`}>
+                <p className='text-gray-800 text-sm my-3 text-justify whitespace-normal break-words'>
+                <span className='text-gray-700 font-semibold'>About: </span>{post?.topic}
+                </p>
             </Link>
-            <Link href={`/post/${id}`}>
-            <img src={post?.image}
-            className='rounded-2xl mr-2'/>
+
+            <Link href={`/posts/${id}`}>
+                <p className='text-gray-800 text-sm my-3 text-justify whitespace-normal break-words'>
+                <span className='text-gray-700 font-semibold'>Prompt: </span>{post?.text}
+                </p>
+            </Link>
+
+            <Link href={`/posts/${id}`}>
+                <img src={post?.image}
+                className='rounded-2xl mr-2'/>
             </Link>
             <Icons id={id} uid={post.uid}/>
         </div>

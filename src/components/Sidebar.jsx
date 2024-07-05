@@ -1,5 +1,6 @@
 'use client';
-import { HiHome, HiDotsHorizontal } from "react-icons/hi";
+
+import { HiHome } from "react-icons/hi";
 import Link from 'next/link';
 import Image from "next/image";
 import { useSession, signOut, signIn } from 'next-auth/react';

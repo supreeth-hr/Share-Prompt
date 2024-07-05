@@ -11,7 +11,7 @@ import { app } from '../firebase';
 import { useEffect, useState } from 'react';
 import Comment from './Comment';
 
-export default function Comments({ id }) {
+export default function Comments({post, id}) {
   const db = getFirestore(app);
   const [comments, setComments] = useState([]);
 
@@ -35,6 +35,7 @@ export default function Comments({ id }) {
           comment={comment.data()}
           commentId={comment.id}
           originalPostId={id}
+          uid={post.uid}
         />
       ))}
     </div>
