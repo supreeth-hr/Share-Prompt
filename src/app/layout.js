@@ -8,7 +8,7 @@ import CommentModal from "@/components/CommentModal";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Prompt Sphere",
+  title: "Photo Sphere",
   description: "Developed by Supreeth",
 };
 
