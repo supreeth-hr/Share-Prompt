@@ -4,7 +4,6 @@ import Sidebar from "@/components/Sidebar";
 import News from "@/components/News";
 import SessionWrapper from "@/components/SessionWrapper";
 import CommentModal from "@/components/CommentModal";
-import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +18,6 @@ export default function RootLayout({ children }) {
   return (
     <SessionWrapper>
       <html lang='en'>
-        <Head>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
         <body className={inter.className}>
           <div className='flex justify-center max-w-7xl mx-auto'>
             <div className='hidden sm:inline border-r h-screen sticky top-0 w-2/6'>
