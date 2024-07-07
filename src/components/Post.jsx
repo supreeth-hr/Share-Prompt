@@ -5,6 +5,7 @@ import Icons from './Icons';
 import { useState } from 'react';
 import { MdOutlineEdit } from "react-icons/md";
 import { useSession} from 'next-auth/react';
+import { HiOutlineClipboardCopy } from "react-icons/hi";
 
 export default function Post({post, id}) {
   const {data:session}=useSession();
@@ -13,6 +14,11 @@ export default function Post({post, id}) {
     const toggleModal = () => {
         setShowModal(!showModal);
       };
+
+    const copyToClipboard = (text) => {
+      navigator.clipboard.writeText(text);
+      alert('Prompt copied to clipboard');
+    };
 
   return (
     <div className='flex flex-col p-3 border-b border-gray-200 hover:bg-gray-50'>
@@ -49,6 +55,14 @@ export default function Post({post, id}) {
             <span className='text-gray-700 font-semibold'>Prompt: </span>{post?.text}
           </p>
         </Link>
+
+        <button
+            className='mb-3 text-gray-500 hover:text-gray-700'
+            onClick={() => copyToClipboard(post?.text)}
+            title='Copy Prompt'
+          >
+            <HiOutlineClipboardCopy className='h-5 w-5' />
+          </button>
 
         {post?.image && (
           <div className='cursor-pointer mb-3 ml-2' onClick={toggleModal}>
