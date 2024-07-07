@@ -62,7 +62,7 @@ export default function CommentModal() {
             <div className="p-4">
               <div className="border-b border-gray-200 py-2 px-1.5">
                 <HiX
-                className="text-2x text-gray-700 p-1 hover:bg-gray-200 rounded-full cursor-pointer"
+                className="text-3xl text-gray-700 p-1 hover:bg-gray-200 rounded-full cursor-pointer"
                 onClick={()=>setOpen(false)}/>
               </div>
               <div className="p-2 flex items-center space-x-1 relative">
