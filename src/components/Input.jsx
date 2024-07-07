@@ -71,6 +71,7 @@ export default function Input() {
   };
 
   const handleSubmit = async () =>{
+    const topicKeywords = topic.toLowerCase().split(' ');
     setPostLoading(true);
     const docRef = await addDoc(collection(db,'posts'),{
       uid:session.user.uid,
@@ -78,6 +79,7 @@ export default function Input() {
       username:session.user.username,
       text,
       topic,
+      topicKeywords,
       profileImg:session.user.image,
       timestamp:serverTimestamp(),
       image:imageFileUrl,

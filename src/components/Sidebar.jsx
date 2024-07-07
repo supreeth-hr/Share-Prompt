@@ -1,6 +1,6 @@
 'use client';
 
-import { HiHome } from "react-icons/hi";
+import { HiHome, HiSearch } from "react-icons/hi";
 import Link from 'next/link';
 import Image from "next/image";
 import { useSession, signOut, signIn } from 'next-auth/react';
@@ -43,6 +43,12 @@ export default function Sidebar() {
             Sign In
           </button>
         )}
+        <Link href='/search'>
+          <div className="flex flex-row items-center gap-2 pt-3 pl-2 cursor-pointer">
+              <HiSearch className="h-5 w-5"/>
+              <span className='font-bold'>Search a prompt</span>
+          </div>
+        </Link>
       </div>
       {session && (
         <div className='text-gray-700 text-sm flex mr-9 items-center cursor-pointer p-3 hover:bg-gray-100 rounded-full transition-all duration-200'>
