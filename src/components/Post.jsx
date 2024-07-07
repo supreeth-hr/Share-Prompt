@@ -17,7 +17,6 @@ export default function Post({post, id}) {
 
     const copyToClipboard = (text) => {
       navigator.clipboard.writeText(text);
-      alert('Prompt copied to clipboard');
     };
 
   return (
