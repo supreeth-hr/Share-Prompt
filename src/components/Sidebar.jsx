@@ -50,19 +50,26 @@ export default function Sidebar() {
           </div>
         </Link>
       </div>
-      {session && (
-        <div className='text-gray-700 text-sm flex mr-9 items-center cursor-pointer p-3 hover:bg-gray-100 rounded-full transition-all duration-200'>
-          <img
-            src={session.user.image}
-            alt='user-img'
-            className='h-10 w-10 rounded-full xl:mr-2'
-          />
-          <div className='hidden xl:inline'>
-            <h4 className='font-bold'>{session.user.name}</h4>
-            <p className='text-gray-500'>@{session.user.username}</p>
+      <div className="flex flex-col items-center">
+        <Link href='/about'>
+          <div className="mb-5 mr-8 px-5 py-3 border rounded cursor-pointer hover:bg-gray-100 ">
+            <label className="font-bold cursor-pointer">About</label>
           </div>
-        </div>
-      )}
+        </Link>
+        {session && (
+          <div className='text-gray-700 text-sm flex mr-9 items-center cursor-pointer p-3 hover:bg-gray-100 rounded-full transition-all duration-200'>
+            <img
+              src={session.user.image}
+              alt='user-img'
+              className='h-10 w-10 rounded-full xl:mr-2'
+            />
+            <div className='hidden xl:inline'>
+              <h4 className='font-bold'>{session.user.name}</h4>
+              <p className='text-gray-500'>@{session.user.username}</p>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
