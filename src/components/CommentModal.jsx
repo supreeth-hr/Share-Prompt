@@ -91,7 +91,7 @@ export default function CommentModal() {
                 <div>
                   <textarea
                     className='w-full border-none outline-none tracking-wide min-h-[50px] text-gray-700 placeholder:text-gray-500'
-                    placeholder='Whats happening'
+                    placeholder='Comment'
                     rows='2'
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
