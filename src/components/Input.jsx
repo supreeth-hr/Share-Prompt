@@ -71,7 +71,7 @@ export default function Input() {
   };
 
   const handleSubmit = async () =>{
-    const topicKeywords = topic.toLowerCase().split(' ');
+    const topicKeywords = topic.toLowerCase().split(' ').map(word => word.replace(/^#/, ''));
     setPostLoading(true);
     const docRef = await addDoc(collection(db,'posts'),{
       uid:session.user.uid,
@@ -101,11 +101,11 @@ export default function Input() {
         className='h-11 w-11 rounded-full cursor-pointer hover:brightness-95'/>
         <div className='w-full divide-y divide-gray-200'>
           <div className='flex flex-col mb-3'>
-            <label className='text-gray-700 font-semibold' htmlFor='topic'>What&apos;s the Prompt about?</label>
+            <label className='text-gray-700 font-semibold' htmlFor='topic'>What&apos;s the Prompt about? Be specific.</label>
             <textarea
               id='topic'
               className='w-full border-2 rounded outline-none tracking-wide min-h-[30px] text-gray-700 mt-1'
-              placeholder='Type here'
+              placeholder='Type here (You can use #hashtags)'
               rows='2'
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
