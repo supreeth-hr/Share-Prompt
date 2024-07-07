@@ -43,19 +43,21 @@ export default function Sidebar() {
             Sign In
           </button>
         )}
+
         <Link href='/search'>
           <div className="flex flex-row items-center gap-2 pt-3 pl-2 cursor-pointer">
               <HiSearch className="h-5 w-5"/>
               <span className='font-bold'>Search a prompt</span>
           </div>
         </Link>
-      </div>
-      <div className="flex flex-col items-center">
+        
         <Link href='/about'>
-          <div className="mb-5 mr-8 px-5 py-3 border rounded cursor-pointer hover:bg-gray-100 ">
+          <div className="mt-4 justify-center cursor-pointer ml-10 pl-9">
             <label className="font-bold cursor-pointer">About</label>
           </div>
         </Link>
+      </div>
+
         {session && (
           <div className='text-gray-700 text-sm flex mr-9 items-center cursor-pointer p-3 hover:bg-gray-100 rounded-full transition-all duration-200'>
             <img
@@ -69,7 +71,6 @@ export default function Sidebar() {
             </div>
           </div>
         )}
-      </div>
     </div>
   );
 }
