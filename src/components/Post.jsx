@@ -3,9 +3,12 @@
 import Link from 'next/link';
 import Icons from './Icons';
 import { useState } from 'react';
+import { MdOutlineEdit } from "react-icons/md";
+import { useSession} from 'next-auth/react';
 
 export default function Post({post, id}) {
-    const [showModal, setShowModal] = useState(false);
+  const {data:session}=useSession();
+  const [showModal, setShowModal] = useState(false);
 
     const toggleModal = () => {
         setShowModal(!showModal);
@@ -13,18 +16,25 @@ export default function Post({post, id}) {
 
   return (
     <div className='flex flex-col p-3 border-b border-gray-200 hover:bg-gray-50'>
-      <div className='flex items-start space-x-4'>
-        <img
-          src={post?.profileImg}
-          alt='user-img'
-          className='h-11 w-11 rounded-full'
-          width={44}
-          height={44}
-        />
-        <div>
-          <h4 className='font-bold text-sm'>{post?.name}</h4>
-          <div className='text-xs'>@{post?.username}</div>
+      <div className='flex items-start justify-between'>
+        <div className='flex items-start space-x-4'>
+          <img
+            src={post?.profileImg}
+            alt='user-img'
+            className='h-11 w-11 rounded-full'
+            width={44}
+            height={44}
+          />
+          <div>
+            <h4 className='font-bold text-sm'>{post?.name}</h4>
+            <div className='text-xs'>@{post?.username}</div>
+          </div>
         </div>
+        {session?.user?.uid === post.uid &&(
+        <Link href={`/edit/${id}`}>
+        <MdOutlineEdit
+          className='h-5 w-5 mr-2 mt-2 cursor-pointer hover:bg-gray-400 rounded-full transition-all duration-200'/>
+        </Link>)}
       </div>
 
       <div className='mt-3'>

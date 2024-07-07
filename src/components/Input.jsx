@@ -57,6 +57,7 @@ export default function Input() {
       },
       (error) => {
         console.log(error);
+        alert('The Image should be less than 2 MB');
         setImageFileUploading(false);
         setImageFileUrl(null);
         setSelectedFile(null);
@@ -68,6 +69,14 @@ export default function Input() {
         });
       }
     );
+  };
+
+  const handleCancelImage = () => {
+    setSelectedFile(null);
+    setImageFileUrl(null);
+    if (imagePickRef.current) {
+      imagePickRef.current.value = '';
+    }
   };
 
   const handleSubmit = async () =>{
@@ -123,17 +132,28 @@ export default function Input() {
             />
           </div>
             {selectedFile && (
-              <img
-              src={imageFileUrl}
-              alt='image'
-              className={`w-full max-h-[250px] object-cover cursor-pointer ${imageFileUploading? 'animate-pulse': ''}`}
-              />
+              <div className='relative'>
+                <img
+                  src={imageFileUrl}
+                  alt='image'
+                  className={`w-full max-h-[250px] object-cover cursor-pointer ${
+                    imageFileUploading ? 'animate-pulse' : ''
+                  }`}
+                />
+                <button
+                  className='absolute top-2 right-2 bg-white bg-opacity-50 text-gray-700 rounded-full p-1 hover:bg-opacity-75'
+                  onClick={handleCancelImage}
+                >
+                  Cancel
+                </button>
+              </div>
             )}
             <div className='flex items-center justify-between pt-2.5'>
                 <HiOutlinePhotograph 
                 onClick={()=>imagePickRef.current.click()}
                 className='h-10 w-10 p-2 text-sky-500 hover:bg-sky-100 rounded-full cursor-pointer'/>
                 <input
+                key={selectedFile ? selectedFile.name + selectedFile.size : 'file-input'}
                 type='file'
                 ref={imagePickRef}
                 accept='image/*'
