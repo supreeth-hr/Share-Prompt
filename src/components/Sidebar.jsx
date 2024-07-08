@@ -13,10 +13,10 @@ export default function Sidebar() {
         <Link href='/'>
         <div className="pr-8 pt-8">
           <Image
-            src='/images/logo-text.svg'
+            src='/images/logo-text.png'
             alt='logo'
-            width={230}
-            height={150}
+            width={250}
+            height={170}
             className='object-contain'
           />
         </div>
